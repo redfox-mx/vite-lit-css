@@ -1,11 +1,13 @@
 {
   "name": "playground-lit-css",
+  "private": true,
   "scripts": {
-    "dev": "nodemon -w '../../packages/vite-plugin-lit-css/**/*.ts' -e .ts -x vite"
+    "dev": "vite"
   },
   "devDependencies": {
+    "@types/node": "^18.16.3",
     "vite": "^4.3.3",
-    "vite-plugin-inspect": "^0.7.24"
+    "vite-plugin-lit-css": "workspace:*"
   },
   "dependencies": {
     "lit": "^2.7.3"

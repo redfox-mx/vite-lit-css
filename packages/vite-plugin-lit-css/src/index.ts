@@ -1,98 +1,72 @@
-import { Plugin, PluginOption, createFilter } from 'vite';
-import type { ExportSpecifier, ImportSpecifier } from 'es-module-lexer';
-import { init, parse } from 'es-module-lexer';
+import { PluginOption, createFilter } from 'vite';
 import MagicString from 'magic-string';
+
+import { parseImports, addQueryPart, createCssTemplate } from './utils';
 
 export interface Options {
   include?: string | RegExp | Array<string | RegExp>
   exclude?: string | RegExp | Array<string | RegExp>
 }
 
-const litCssRE = /\.lit.css(?:$|\?)/;
-const inlineRE = /(?:\?|&)inline\b/;
-const tsRE = /\.tsx?$/;
+const litCssRE = /\.lit.(css|less|sass|scss|styl|stylus|pcss|postcss|sss)(?:$|\?)/;
+const inlineRE = /(?:\?|&)inline\b/
+const jsRE = /\.[tj]sx?$/;
 
-function stripBomTag(content: string): string {
-  if (content.charCodeAt(0) === 0xfeff) {
-    return content.slice(1);
-  }
-
-  return content;
-}
-
-async function parseImports(source: string) {
-  await init;
-  source = stripBomTag(source);
-  return parse(source);
-}
-
+const isJsLike = (id: string) =>
+  jsRE.test(id);
 
 export default function litCss(options: Options = {}): PluginOption {
   const filter = createFilter(options.include ?? litCssRE, options.exclude);
-  // allow vite to process styles as inline content and
-  // disables warning for vite:import-analysis
-  const litImports: Plugin = {
-    name: 'lit-css:import',
-    enforce: 'pre',
-    async transform(code, id) {
-      if (id.includes('/node_modules/') || !tsRE.test(id)) return;
+  return {
+    name: 'lit-css',
+    configResolved(config) {
+      const csssPostPlugin = config.plugins.find(plugin => plugin.name === 'vite:css-post')
+      if (!csssPostPlugin) return;
 
-      let imports!: readonly ImportSpecifier[];
-      try {
-        [imports] = await parseImports(code);
-      } catch {}
+      const cssTransforFn = csssPostPlugin.transform as any;
+      csssPostPlugin.transform = async function (code, id, options) {
+        if (id.includes('/node_modules/') || !filter(id)) return cssTransforFn.apply(this, [code, id, options]);
 
-      imports.forEach(importSpecifier => {
-        const {
-          e: endImport,
-          n: specifier
-        } = importSpecifier;
-        
+        if (config.command === 'serve') {
+          return createCssTemplate(code);
+        }
 
-        if(!filter(specifier) || !specifier) return;
-        // prevent duplicated inline query
-        if(inlineRE.test(specifier)) return;
+        const result = await cssTransforFn.apply(this, [code, id, options]);
+        let css: string = typeof result === 'string' ? result : result.code;
+        css = css.slice(16, -1)
+        return {
+          code: createCssTemplate(css),
+          moduleSideEffects: false
+        }
+      }
 
-        const query = specifier + specifier.includes('?') ? '?lit' : '&lit';
-        code = code.slice(0, endImport) + query + code.slice(endImport);
-      })
-
-      return { code }
     },
-  }
-
-  const litTemplate: Plugin = {
-    name: 'lit-css:template',
-    enforce: 'post',
     async transform(code, id) {
-      if(!filter(id) || id.includes('/node_modules/')) return
+      if (id.includes('/node_modules/') || !isJsLike(id)) return;
 
-      let exports!: readonly ExportSpecifier[];
+      const str = new MagicString(code);
+
       try {
-        [, exports] = await parseImports(code);
-      } catch {}
+        let [imports] = await parseImports(code);
+        imports.forEach(importSpecifier => {
+          const {
+            e: endImport,
+            n: specifier,
+          } = importSpecifier;
 
-      exports.forEach(exportSpecifier => {
-        const {
-          e: endExport,
-          n: specifier
-        } = exportSpecifier;
+          if (
+            !specifier ||
+            inlineRE.test(specifier) ||
+            !filter(specifier)
+          ) return;
+          str.appendLeft(endImport, addQueryPart(specifier, 'inline'))
+        })
 
-        if(!specifier) return;
-
-        let css = code.slice(endExport + 2, -1); // remove quotes arround styles
-        code = `import { css } from 'lit';
-export const styles = css\`${css}\`;
-export default styles;`
-      })
-
-      const map = (new MagicString(code))
-        .generateMap()
-        .toString();
-
-      return { code, map };
+        return str.toString();
+      } catch {
+        this.warn({ message: 'Unable to parse file', id });
+        return null;
+      }
     }
   }
-
-  return [litImports];
 }

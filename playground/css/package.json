@@ -1,0 +1,14 @@
+{
+  "name": "playground-lit-css",
+  "private": true,
+  "scripts": {
+    "dev": "vite"
+  },
+  "devDependencies": {
+    "vite": "^4.3.3",
+    "vite-plugin-lit-css": "workspace:*"
+  },
+  "dependencies": {
+    "lit": "^2.7.3"
+  }
+}

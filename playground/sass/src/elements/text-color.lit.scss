@@ -1,0 +1,15 @@
+
+@use './base';
+
+:host {
+  font-family: base.$font-stack;
+  color: base.$primary-color;
+  background-color: rgba(42, 157, 143, 0.25);
+  border-radius: 0.25em;
+  padding-left: 0.3em;
+  padding-right: 0.3em;
+}
+
+:host([accent]) {
+  background-color: rgba(244, 162, 97 , 0.2);
+}
