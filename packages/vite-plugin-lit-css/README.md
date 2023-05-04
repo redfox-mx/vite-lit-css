@@ -45,7 +45,7 @@ import litCss from 'vite-plugin-lit-css'
 
 export default defineConfig({
   plugins: [litCss({
-    include: /\.scss$/ // includes all scss files as lit styles
+    include: /\.scss$/, // includes all scss files as lit styles
     exclude: ['theme.css', 'normalize.css'] // exclude your global styles
   })],
 })
