@@ -1,6 +1,7 @@
 import { LitElement, html } from 'lit';
 import { property, customElement } from 'lit/decorators.js'
-import styles from './text-color.lit.css';
+import styles from './text-color.css';
+
 
 @customElement('lcss-text')
 export class LitCSSText extends LitElement {
