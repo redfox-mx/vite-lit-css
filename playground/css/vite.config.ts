@@ -2,7 +2,18 @@ import { defineConfig } from 'vite'
 import litCss from 'vite-plugin-lit-css'
 
 export default defineConfig({
-  plugins: [litCss({
-    include: /\.css/
-})],
+  plugins: [
+    litCss({
+      include: /\.css/
+    })
+  ],
+  css: {
+    modules: {
+      scopeBehaviour: 'local',
+      localsConvention: 'camelCaseOnly'
+    }
+  },
+  build: {
+    cssMinify: true
+  }
 })
