@@ -1,8 +1,12 @@
+import { dirname } from 'path';
+import { readFileSync, writeFileSync } from 'fs';
 import { PluginOption, ResolvedConfig, createFilter, preprocessCSS } from 'vite'
 import { dataToEsm } from '@rollup/pluginutils'
 import { sanitize } from './sanitize'
 import { init, parse } from 'es-module-lexer'
 import MagicString from 'magic-string'
+import isThere from 'is-there';
+import * as mkdirp from 'mkdirp'
 
 export interface Options {
   include?: string | RegExp | Array<string | RegExp>
@@ -105,6 +109,37 @@ export default function litCss(options: Options = {}): PluginOption {
             } = await preprocessCSS(code, id, config)
             if (modules) {
               moduleCache.set(id, modules)
+              let output = [
+                ...Object.keys(modules)
+                  .map(key => `export declare const ${key}: string;`),
+                  `declare const __css: import('lit').CSSResult;`,
+                  `export default __css;`
+              ].join('\n')
+
+
+
+              const [file] = id.split('?'); 
+              const outDir = dirname(file)
+              if (!isThere(outDir)) {
+                mkdirp.sync(outDir);
+              }
+
+              let isDirty = false;
+
+              if (!isThere(file)) {
+                isDirty = true;
+              } else {
+                const content = readFileSync(file, { encoding: 'utf-8' })
+          
+                if (content !== output) {
+                  isDirty = true;
+                }
+              }
+          
+              if (isDirty) {
+                writeFileSync(`${file}.d.ts`, output, { encoding: 'utf-8' })
+              }
+
             }
 
             return null

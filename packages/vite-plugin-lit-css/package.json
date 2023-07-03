@@ -40,7 +40,10 @@
   },
   "devDependencies": {
     "@rollup/pluginutils": "^5.0.2",
+    "@types/node": "^20.3.3",
     "es-module-lexer": "^1.2.1",
-    "magic-string": "^0.30.0"
+    "is-there": "^4.5.1",
+    "magic-string": "^0.30.0",
+    "mkdirp": "^3.0.1"
   }
 }
