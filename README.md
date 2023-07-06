@@ -1,5 +1,10 @@
 # Use Vite styles for your lit components
 
+<p align="center">
+  <img width="250" height="200" src="https://raw.githubusercontent.com/redfox-mx/cypress-lit/main/docs/lit.svg">
+  <img width="250" height="200" src="https://raw.githubusercontent.com/redfox-mx/cypress-lit/main/docs/vite.png">
+</p>
+
 Build plugin to import your style files (css, scss, sass, etc..) as lit css tagged-template literals 
 
 __note__: css modules are no supported
