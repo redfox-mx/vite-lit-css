@@ -23,20 +23,19 @@
  * 
  * copy and adapted from https://github.com/mgenware/string-to-template-literal
  * */
-const illegalChars = new Map<string, string>();
-illegalChars.set('\\', '\\\\');
-illegalChars.set('`', '\\`');
-illegalChars.set('$', '\\$');
+const illegalChars = new Map<string, string>()
+illegalChars.set('`', '\\`')
+illegalChars.set('$', '\\$')
 
 export function sanitize(s: string): string {
   if (!s) {
-    return '';
+    return ''
   }
 
-  let res = '';
+  let res = ''
   for (let i = 0; i < s.length; i++) {
-    const c = s.charAt(i);
-    res += illegalChars.get(c) || c;
+    const c = s.charAt(i)
+    res += illegalChars.get(c) || c
   }
-  return res;
+  return res
 }

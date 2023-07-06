@@ -1,11 +1,52 @@
 {
-  "name": "monorepo",
-  "private": true,
+  "name": "vite-plugin-lit-css",
+  "version": "1.0.0-alpha.1",
+  "homepage": "https://github.com/redfox-mx/vite-lit-css/blob/main/packages/vite-plugin-lit-css/README.md",
+  "repository": "https://github.com/redfox-mx/vite-lit-css",
+  "author": {
+    "name": "Diego Jesus Hernandez Gonzalez",
+    "email": "hernandezdj98@outlook.com",
+    "aka": "redfox-mx"
+  },
+  "files": [
+    "dist",
+    "client.d.ts"
+  ],
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    },
+    "./client": {
+      "types": "./client.d.ts"
+    }
+  },
   "devDependencies": {
-    "nodemon": "^2.0.22",
+    "@rollup/pluginutils": "^5.0.2",
+    "@types/node": "^20.3.3",
+    "es-module-lexer": "^1.3.0",
+    "is-there": "^4.5.1",
+    "magic-string": "^0.30.0",
+    "mkdirp": "^3.0.1",
+    "modern-normalize": "^2.0.0",
     "picocolors": "^1.0.0",
+    "sass": "^1.63.6",
     "tsx": "^3.12.7",
     "unbuild": "^1.2.1",
-    "vite": "^4.3.3"
+    "vite-plugin-inspect": "^0.7.32",
+    "vitest": "^0.32.2"
+  },
+  "peerDependencies": {
+    "lit": "^2.0.0",
+    "vite": "^4.2.0"
+  },
+  "peerDependenciesMeta": {
+    "lit": {
+      "optional": true
+    }
   }
 }
