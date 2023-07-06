@@ -25,6 +25,11 @@
       "types": "./client.d.ts"
     }
   },
+  "scripts": {
+    "dev": "vite playground",
+    "build": "unbuild && tsx scripts/patchCJS.ts",
+    "prepublishOnly": "pnpm build"
+  },
   "devDependencies": {
     "@rollup/pluginutils": "^5.0.2",
     "@types/node": "^20.3.3",
