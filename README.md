@@ -96,7 +96,7 @@ export default defineConfig({
 
 ## Options
 
-This plugin will transform all your css like styles by default into constructible library-specific css styles, but you can take control of this transformation with include and exclude options.
+This plugin will transform all your css like styles by default into constructible library-specific css styles, but you can take control of this transformation with the include and exclude options.
 
 ```ts
 import { defineConfig } from 'vite'
