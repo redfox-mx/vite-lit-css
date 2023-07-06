@@ -1,17 +1,14 @@
-# Use Vite styles for your lit components
-
 <p align="center">
-  <img width="250" height="200" src="https://raw.githubusercontent.com/redfox-mx/vite-lit-css/main/docs/lit.svg">
-  <img width="250" height="200" src="https://raw.githubusercontent.com/redfox-mx/vite-lit-css/main/docs/vite.png">
+  <img height="200" src="https://raw.githubusercontent.com/redfox-mx/vite-lit-css/main/docs/lit.svg">
 </p>
 
-Build plugin to import your style files (css, scss, sass, etc..) as lit css tagged-template literals 
+# Use Vite styles for your lit components
 
-__note__: css modules are no supported
+> Plugin to get all the power of Vite styles with lit tagged-template ⚡. 
 
-## Usage
+This plugin aims to get work with css lang stylesheet and lit template literals as simply as any other library or front-end framework.
 
-Install
+## Installation
 
 ```bash
 $ npm install -D vite-plugin-lit-css
@@ -23,7 +20,9 @@ $ npm install -D vite-plugin-lit-css
 $ pnpm add -D vite-plugin-lit-css
 ```
 
-Now, add `litCss` plugin in your `vite.config`
+## Usage
+
+Add `vite-plugin-lit-css` to your Vite config.
 
 ```ts
 import { defineConfig } from 'vite'
@@ -34,44 +33,93 @@ export default defineConfig({
 })
 ```
 
-### Options
-
-By default this plugin allow to use files with `.lit.{ext}` (lit.css, lit.scss, etc) pattern, so, every type of style supported by vite could be resolved. For more examples you can see playgrounds.
-
-
-| option | description | value |
-|--|--|--|
-|include| Allow to use string or regex to include files to resolve as css tagged templates | `string \| RegExp \| Array<string \| RegExp>` |
-|exclude| Allow to use string or regex to exclude files to no resolve as css tagged templates | `string \| RegExp \| Array<string \| RegExp>` |
+Then, import your stylesheets as any other javascript module[^1] in your code.
 
 ```ts
-// Eg.
+import { LitElement } from 'lit'
+import styles from './styles.css'
+// or you can use query syntaxis
+import queryStyles from './styles.scss?lit'
 
+export class Element extends LitElement {
+  static styles = [styles, queryStyles]
+
+}
+```
+
+> __note__: Please do not try to mix both import styles (query and non-query) since this probably duplicates your css (transformed) code.
+
+### css modules
+
+This plugin allows working with css modules (experimental), so you can import as the following example.
+
+```css
+/* styles.module.css */
+.title {
+  font-size: 2rem;
+}
+
+.error {
+  color: red;
+}
+```
+
+And in your javascript/typescript file.
+
+```ts
+import { LitElement, html } from 'lit'
+import styles, { title, error } from './styles.module.css'
+
+export class Element extends LitElement {
+  static styles = [styles]
+  
+  render() {
+    return html`
+      <h1 class="${ title }">This is a error title</h1>
+      <p class="${ error }">And a error text</p>
+    `
+  }
+}
+```
+
+Optionally, you can enable auto-generated typescript file definition (experimental) for your css modules to get a more comfortable DX experience.
+
+```ts
+// vite.config.ts
+import { defineConfig } from 'vite'
+import litCss from 'vite-plugin-lit-css'
+
+export default defineConfig({
+  plugins: [litCss({ dts: true })],
+})
+```
+
+## Options
+
+This plugin will transform all your css like styles by default into constructible library-specific css styles, but you can take control of this transformation with include and exclude options.
+
+```ts
 import { defineConfig } from 'vite'
 import litCss from 'vite-plugin-lit-css'
 
 export default defineConfig({
   plugins: [litCss({
-    include: /\.scss/, // includes only scss files as lit styles
-    exclude: ['theme.css', 'normalize.css'] // exclude your global styles
+    include: /\.scss/, // transform only scss files as lit styles
+    exclude: [/global.css/] // exclude your global styles
   })],
 })
 
-/* web-component.ts */
+// index.ts
 
-import { LitElement, html } from 'lit';
-import { property, customElement } from 'lit/decorators.js'
-import styles from './styles.scss';
-// or you can use query syntax
-import styles from './styles.css?lit';
-
-@customElement('hello-world')
-export class LitCSSText extends LitElement {
-
-  public static styles = [styles];
-
-  protected render() {
-    return html`<h1>Hello worls</h1>`
-  }
-}
+import './styles.global.css' // this file will skiped from this plugin
 ```
+
+> Your index.html __never__ be transformed. You can put your theme or global css variables inside it.
+
+
+## Caveats
+
+- Currently, HMR is not supported, and every change made inside your lit imported styles will trigger a full page reload.
+- Source mapping is not supported :C 
+
+[^1]: `vite-plugin-lit-css` patch your imports to prevent `vite:css-post` from emitting incorrect css assets and `vite:import-analysis` from getting warnings.
