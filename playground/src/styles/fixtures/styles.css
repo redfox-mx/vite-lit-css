@@ -1,0 +1,5 @@
+.css::before {
+  content: 'css:';
+  display: inline;
+  margin-right: 0.5em;
+}
