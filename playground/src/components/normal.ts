@@ -14,9 +14,10 @@ export class LitQueryCss extends LitCssElement {
   protected render(): unknown {
     return html`
       <div>
-        <p class="css">write this styles with ${code('styles.css')}</p>
-        <p class="scss">write this styles with ${code('styles.scss')}</p>
-        <p class="sass">write this styles with ${code('styles.sass')}</p>
+        <p class="css hover:card">write this styles with ${code('styles.css')}</p>
+        <p class="scss hover:card">write this styles with ${code('styles.scss')}</p>
+        <p class="sass hover:card">write this styles with ${code('styles.sass')}</p>
+        <p class="xss hover:card">write this styles with ${code('styles.module.css')}</p>
       </div>
     `
   }

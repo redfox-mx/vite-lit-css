@@ -12,7 +12,7 @@ export class LitQueryCss extends LitCssElement {
   protected render(): unknown {
     return html`
       <div>
-        <p class="${module}">write this styles with ${code('styles.module.css')}</p>
+        <p class="${module} hover:card">write this styles with ${code('styles.module.css')}</p>
       </div>
     `
   }

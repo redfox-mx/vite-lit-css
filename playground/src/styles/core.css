@@ -12,3 +12,13 @@ p {
 pre {
   display: inline;
 }
+
+.hover\:card:hover{
+  box-shadow: 2px 2px 8px rgb(52, 52, 52);
+}
+
+.xss::before {
+  content: '${console.log(window)}';
+  display: inline;
+  margin-right: 0.5em;
+}
