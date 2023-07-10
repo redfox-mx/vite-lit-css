@@ -63,16 +63,17 @@ export default function litCss(options: Options = {}): Plugin {
         if (!isLitCss(id)) return cssPostTransformFn.call(this, code, id, ...args)
 
         const modules = cssModulesCache.get(config)!.get(id)
-        let result = await cssPostTransformFn.call(this, code, patchImport(id), ...args)
-        result = typeof result === 'string' ? result : result.code
-        result = result.slice(16, -1)
 
         if (config.command == 'serve') {
           return [
-            css(result, engine),
+            css(code, engine),
             cssModules(modules)
           ].join('\n')
         }
+
+        let result = await cssPostTransformFn.call(this, code, patchImport(id), ...args)
+        result = typeof result === 'string' ? result : result.code
+        result = result.slice(16, -1)
 
         return [
           css(result, engine),
