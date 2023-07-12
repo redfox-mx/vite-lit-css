@@ -65,15 +65,16 @@ export default function litCss(options: Options = {}): Plugin {
         const modules = cssModulesCache.get(config)!.get(id)
 
         if (config.command == 'serve') {
+          const scapedCode = JSON.stringify(code).slice(1, -1); // remove quotes
           return [
-            css(code, engine),
+            css(scapedCode, engine),
             cssModules(modules)
           ].join('\n')
         }
 
         let result = await cssPostTransformFn.call(this, code, patchImport(id), ...args)
         result = typeof result === 'string' ? result : result.code
-        result = result.slice(16, -1)
+        result = result.slice(16, -1) // remove `export default "(.*)"`
 
         return [
           css(result, engine),

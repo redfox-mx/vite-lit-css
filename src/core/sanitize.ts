@@ -38,6 +38,5 @@ export function sanitize(s: string): string {
     res += illegalChars.get(c) || c
   }
 
-  res = res.replace(/\\:/g, '\\\\:');
   return res
 }
