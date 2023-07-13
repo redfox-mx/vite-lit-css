@@ -16,8 +16,8 @@ export function css(css: string, options: Options) {
 }
 
 export function cssModules(modules?: Record<string, string>) {
-  return modules ?
-    dataToEsm(modules, { namedExports: true, preferConst: true })
-      // TODO: find a better way to remove `export default { ... }`
-      .replace(/export default .*/s, '') : ''
+  if(!modules) return '';
+  const esModules = dataToEsm(modules, { namedExports: true, preferConst: true })
+
+  return esModules.slice(0, esModules.indexOf('export default'))
 }
