@@ -114,12 +114,11 @@ export default defineConfig({
 import './styles.global.css' // this file will skiped from this plugin
 ```
 
-> Your index.html __never__ be transformed. You can put your theme or global css variables inside it.
+> Your index.html __never__ be transformed. You can put your theme or global css variables/styles inside it.
 
 
 ## Caveats
 
 - Currently, HMR is not supported, and every change made inside your lit imported styles will trigger a full page reload.
-- Source mapping is not supported :C 
 
 [^1]: `vite-plugin-lit-css` patch your imports to prevent `vite:css-post` from emitting incorrect css assets and `vite:import-analysis` from getting warnings.
