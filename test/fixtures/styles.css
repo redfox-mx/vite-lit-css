@@ -1,0 +1,18 @@
+:host {
+  color: red;
+}
+
+/* xss test */
+#xss {
+  content: '${console.log(window)}';
+}
+
+/* tailwindcss state clases */
+.hover\:underline {
+  text-decoration: underline;
+}
+
+/* tailwindcss custom values */
+.text-\[\#50d71e\] {
+  color: #50d71e;
+}
