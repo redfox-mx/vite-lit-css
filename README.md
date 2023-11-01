@@ -1,8 +1,8 @@
+# Use Vite styles for your lit components
+
 <p align="center">
   <img height="200" src="https://raw.githubusercontent.com/redfox-mx/vite-lit-css/main/docs/lit.svg">
 </p>
-
-# Use Vite styles for your lit components
 
 > Plugin to get all the power of Vite styles with lit tagged-template ⚡. 
 
