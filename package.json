@@ -16,13 +16,13 @@
     "dist",
     "client.d.ts"
   ],
-  "main": "./dist/index.js",
-  "module": "./dist/index.cjs",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
+      "import": "./dist/index.mjs",
       "require": "./dist/index.cjs"
     },
     "./client": {
@@ -31,7 +31,7 @@
   },
   "scripts": {
     "dev": "vite playground",
-    "build": "tsup",
+    "build": "unbuild && tsx scripts/patchCJS.ts",
     "prepublishOnly": "pnpm build"
   },
   "devDependencies": {
@@ -42,9 +42,9 @@
     "is-there": "^4.5.1",
     "magic-string": "^0.30.0",
     "mkdirp": "^3.0.1",
-    "modern-normalize": "^2.0.0",
-    "tsup": "^7.2.0",
-    "typescript": "^5.2.2",
+    "picocolors": "^1.0.0",
+    "tsx": "^3.12.7",
+    "unbuild": "^2.0.0",
     "vitest": "^0.32.2"
   },
   "peerDependencies": {
