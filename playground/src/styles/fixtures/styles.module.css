@@ -1,5 +1,0 @@
-.module::before {
-  content: 'css-module:';
-  display: inline;
-  margin-right: 0.5em;
-}
