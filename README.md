@@ -49,6 +49,15 @@ export class Element extends LitElement {
 
 > __note__: Please do not try to mix both import styles (query and non-query) since this probably duplicates your css (transformed) code.
 
+### Typescrip
+
+You can use types definitions inside your vite-env.d.ts. _Remember_: order is important!
+
+```ts
+/// <reference types="vite-plugin-lit-css/client" />
+/// <reference types="vite/client" />
+```
+
 ### css modules
 
 This plugin allows working with css modules (experimental), so you can import as the following example.
