@@ -7,8 +7,7 @@ export type Engine = {
 export const engines  = {
   lit: {
     css: 'css',
-    package: 'lit',
-    dtsType: `import('lit').CSSResult`
+    package: 'lit'
   },
   fast: {
     css: 'css',

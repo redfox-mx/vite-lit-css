@@ -3,7 +3,7 @@
 exports[`litcss plugin > fixtures > test/fixtures/default-import.ts > isProduction is false 1`] = `
 "//vite-plugin-lit-css.js
 import { css as o } from \\"lit\\";
-const e = o\`:host{color:red}#xss{content:\\\\\\"\\\\\${console.log(window)}\\\\\\"}.hover\\\\\\\\:underline{text-decoration:underline}.text-\\\\\\\\[\\\\\\\\#50d71e\\\\\\\\]{color:#50d71e}\\\\n\`, t = e;
+const e = o\`:host{color:red}#xss{content:\\\\\\"\\\\\${console.log(window)}\\\\\\"}.hover\\\\\\\\:underline{text-decoration:underline}.text-\\\\\\\\[\\\\\\\\#50d71e\\\\\\\\]{color:#50d71e}\`, t = e;
 export {
   t as styles
 };
@@ -13,7 +13,7 @@ export {
 exports[`litcss plugin > fixtures > test/fixtures/default-import.ts > isProduction is true 1`] = `
 "//vite-plugin-lit-css.js
 import { css as o } from \\"lit\\";
-const e = o\`:host{color:red}#xss{content:\\\\\\"\\\\\${console.log(window)}\\\\\\"}.hover\\\\\\\\:underline{text-decoration:underline}.text-\\\\\\\\[\\\\\\\\#50d71e\\\\\\\\]{color:#50d71e}\\\\n\`, t = e;
+const e = o\`:host{color:red}#xss{content:\\\\\\"\\\\\${console.log(window)}\\\\\\"}.hover\\\\\\\\:underline{text-decoration:underline}.text-\\\\\\\\[\\\\\\\\#50d71e\\\\\\\\]{color:#50d71e}\`, t = e;
 export {
   t as styles
 };
@@ -23,7 +23,7 @@ export {
 exports[`litcss plugin > fixtures > test/fixtures/query-import.ts > isProduction is false 1`] = `
 "//vite-plugin-lit-css.js
 import { css as o } from \\"lit\\";
-const e = o\`:host{color:red}#xss{content:\\\\\\"\\\\\${console.log(window)}\\\\\\"}.hover\\\\\\\\:underline{text-decoration:underline}.text-\\\\\\\\[\\\\\\\\#50d71e\\\\\\\\]{color:#50d71e}\\\\n\`, t = e;
+const e = o\`:host{color:red}#xss{content:\\\\\\"\\\\\${console.log(window)}\\\\\\"}.hover\\\\\\\\:underline{text-decoration:underline}.text-\\\\\\\\[\\\\\\\\#50d71e\\\\\\\\]{color:#50d71e}\`, t = e;
 export {
   t as styles
 };
@@ -33,7 +33,7 @@ export {
 exports[`litcss plugin > fixtures > test/fixtures/query-import.ts > isProduction is true 1`] = `
 "//vite-plugin-lit-css.js
 import { css as o } from \\"lit\\";
-const e = o\`:host{color:red}#xss{content:\\\\\\"\\\\\${console.log(window)}\\\\\\"}.hover\\\\\\\\:underline{text-decoration:underline}.text-\\\\\\\\[\\\\\\\\#50d71e\\\\\\\\]{color:#50d71e}\\\\n\`, t = e;
+const e = o\`:host{color:red}#xss{content:\\\\\\"\\\\\${console.log(window)}\\\\\\"}.hover\\\\\\\\:underline{text-decoration:underline}.text-\\\\\\\\[\\\\\\\\#50d71e\\\\\\\\]{color:#50d71e}\`, t = e;
 export {
   t as styles
 };

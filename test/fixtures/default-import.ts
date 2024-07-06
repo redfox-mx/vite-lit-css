@@ -1,3 +1,3 @@
-import css from './styles.css?lit'
+import css from './styles.css'
 
 export const styles = css
