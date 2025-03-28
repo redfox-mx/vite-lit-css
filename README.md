@@ -8,11 +8,6 @@
 
 This plugin aims to get work with css lang stylesheet and lit template literals as simply as any other library or front-end framework.
 
-|Plugin version|Vite version|
-|--------------|------------|
-|2.x           |vite 5      |
-|1.x           |vite 4      |
-
 ## Installation
 
 ```bash
@@ -89,3 +84,5 @@ import './styles.global.css' // this file will skipped from this plugin
 ## Caveats
 
 - Currently, HMR is not supported, and every change made inside your lit imported styles will trigger a full page reload.
+
+- For vite v4 use vite-plugin-lit-css 1.x
