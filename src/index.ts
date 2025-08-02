@@ -26,8 +26,8 @@ export default function lit(options: Options = {}): Plugin {
       if (!cssPostPlugin) return
 
       // hijack the vite vite:css-post plugin
-      const cssPostTransformFn = cssPostPlugin.transform as any
-      cssPostPlugin.transform = async function (css, id, ...args) {
+      const cssPostTransformFn = cssPostPlugin.handler as any
+      cssPostPlugin.handler = async function (css, id, ...args) {
         if(!isCSSRequest(id)) return
 
         if(
