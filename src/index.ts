@@ -26,8 +26,9 @@ export default function lit(options: Options = {}): Plugin {
       if (!cssPostPlugin) return
 
       // hijack the vite vite:css-post plugin
-      const cssPostTransformFn = cssPostPlugin.handler as any
-      cssPostPlugin.handler = async function (css, id, ...args) {
+      const cssPostTransformFn = (cssPostPlugin.transform as any).handler
+      // @ts-ignore
+      cssPostPlugin.transform.handler = async function (css, id, ...args) {
         if(!isCSSRequest(id)) return
 
         if(
@@ -39,6 +40,7 @@ export default function lit(options: Options = {}): Plugin {
         }
 
         if(isCssModule(id)) {
+          // @ts-ignore
           this.error(`Unsupported css modules for vite-lit-css plugin with ${id} module specifier`)
           return cssPostTransformFn.call(this, css, id, ...args)
         }
@@ -63,6 +65,7 @@ export default function lit(options: Options = {}): Plugin {
 
         return {
           code,
+          // @ts-ignore
           map: this.getCombinedSourcemap(),
           moduleSideEffects: false
         }
