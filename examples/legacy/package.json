@@ -1,5 +1,5 @@
 {
-  "name": "app",
+  "name": "legacy",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -14,6 +14,6 @@
   "devDependencies": {
     "vite-plugin-lit-css": "workspace:*",
     "typescript": "^5.0.2",
-    "vite": "^7.0.0"
+    "vite": "^6.0.0"
   }
 }
