@@ -1,7 +1,7 @@
 {
   "name": "vite-plugin-lit-css",
   "description": "Plugin to get all the power of Vite styles with lit tagged-template ⚡",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "type": "module",
   "homepage": "https://github.com/redfox-mx/vite-lit-css/blob/main/README.md",
   "repository": "https://github.com/redfox-mx/vite-lit-css",
@@ -39,6 +39,7 @@
     "@types/node": "^20.19.9",
     "fast-glob": "^3.3.1",
     "picocolors": "^1.0.0",
+    "rollup": "^4.46.2",
     "tsx": "^4.8.1",
     "unbuild": "^2.0.0",
     "vitest": "^0.32.2"
