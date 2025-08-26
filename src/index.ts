@@ -1,6 +1,6 @@
 import { type Plugin, isCSSRequest } from 'vite';
 import { createFilter } from '@rollup/pluginutils';
-import { isCssModule, isDirectCSSRequest, isInline } from './core/constants';
+import { isCssModule, isDirectCSSRequest, isInline, isTransformOnly } from './core/constants';
 import { Engines, Engine, engines } from './core/engines';
 import { sanitize } from './core/sanitize';
 import { type Plugin as RollupPlugin } from 'rollup';
@@ -33,7 +33,8 @@ export default function lit(options: Options = {}): Plugin {
         if (
           isDirectCSSRequest(id) ||
           !filter(id) ||
-          isInline(id)
+          isInline(id) ||
+          isTransformOnly(id)
         ) {
           return cssPostTransformFn.call(this, css, id, ...args);
         }

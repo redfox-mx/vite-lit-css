@@ -39,3 +39,23 @@ export {
 };
 "
 `;
+
+exports[`litcss plugin > fixtures > test/fixtures/url-import.ts > isProduction is false 1`] = `
+"//vite-plugin-lit-css.js
+const s = \\"/styles.css\\", t = s;
+export {
+  t as styleUrl
+};
+
+styles.css"
+`;
+
+exports[`litcss plugin > fixtures > test/fixtures/url-import.ts > isProduction is true 1`] = `
+"//vite-plugin-lit-css.js
+const s = \\"/styles.css\\", t = s;
+export {
+  t as styleUrl
+};
+
+styles.css"
+`;
