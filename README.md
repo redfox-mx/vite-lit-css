@@ -86,3 +86,5 @@ import './styles.global.css' // this file will skipped from this plugin
 - Currently, HMR is not supported, and every change made inside your lit imported styles will trigger a full page reload.
 
 - For vite v4 use vite-plugin-lit-css 1.x
+
+- For vite v5, v6 use vite-plugin-lit-css 2.x
