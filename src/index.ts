@@ -1,9 +1,9 @@
-import { type Plugin, isCSSRequest } from 'vite';
 import { createFilter } from '@rollup/pluginutils';
-import { isCssModule, isDirectCSSRequest, isInline, isTransformOnly } from './core/constants';
-import { Engines, Engine, engines } from './core/engines';
-import { sanitize } from './core/sanitize';
 import { type Plugin as RollupPlugin } from 'rollup';
+import { sanitize } from './core/sanitize.js';
+import { type Plugin, isCSSRequest } from 'vite';
+import { isCssModule, isDirectCSSRequest, isInline, isTransformOnly } from './core/constants.js';
+import { Engines, Engine, engines } from './core/engines.js';
 
 export interface Options {
   include?: string | RegExp | Array<string | RegExp>;

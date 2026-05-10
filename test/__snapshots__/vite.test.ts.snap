@@ -2,60 +2,66 @@
 
 exports[`litcss plugin > fixtures > test/fixtures/default-import.ts > isProduction is false 1`] = `
 "//vite-plugin-lit-css.js
-import { css as o } from \\"lit\\";
-const e = o\`:host{color:red}#xss{content:\\\\\\"\\\\\${console.log(window)}\\\\\\"}.hover\\\\\\\\:underline{text-decoration:underline}.text-\\\\\\\\[\\\\\\\\#50d71e\\\\\\\\]{color:#50d71e}\`, t = e;
-export {
-  t as styles
-};
+import { css as e } from "lit";
+//#endregion
+//#region test/fixtures/default-import.ts
+var t = e\`:host{color:red}#xss{content:\\"\\\${console.log(window)}\\"}.hover\\\\:underline{text-decoration:underline}.text-\\\\[\\\\#50d71e\\\\]{color:#50d71e}\`;
+//#endregion
+export { t as styles };
 "
 `;
 
 exports[`litcss plugin > fixtures > test/fixtures/default-import.ts > isProduction is true 1`] = `
 "//vite-plugin-lit-css.js
-import { css as o } from \\"lit\\";
-const e = o\`:host{color:red}#xss{content:\\\\\\"\\\\\${console.log(window)}\\\\\\"}.hover\\\\\\\\:underline{text-decoration:underline}.text-\\\\\\\\[\\\\\\\\#50d71e\\\\\\\\]{color:#50d71e}\`, t = e;
-export {
-  t as styles
-};
+import { css as e } from "lit";
+//#endregion
+//#region test/fixtures/default-import.ts
+var t = e\`:host{color:red}#xss{content:\\"\\\${console.log(window)}\\"}.hover\\\\:underline{text-decoration:underline}.text-\\\\[\\\\#50d71e\\\\]{color:#50d71e}\`;
+//#endregion
+export { t as styles };
 "
 `;
 
 exports[`litcss plugin > fixtures > test/fixtures/query-import.ts > isProduction is false 1`] = `
 "//vite-plugin-lit-css.js
-import { css as o } from \\"lit\\";
-const e = o\`:host{color:red}#xss{content:\\\\\\"\\\\\${console.log(window)}\\\\\\"}.hover\\\\\\\\:underline{text-decoration:underline}.text-\\\\\\\\[\\\\\\\\#50d71e\\\\\\\\]{color:#50d71e}\`, t = e;
-export {
-  t as styles
-};
+import { css as e } from "lit";
+//#endregion
+//#region test/fixtures/query-import.ts
+var t = e\`:host{color:red}#xss{content:\\"\\\${console.log(window)}\\"}.hover\\\\:underline{text-decoration:underline}.text-\\\\[\\\\#50d71e\\\\]{color:#50d71e}\`;
+//#endregion
+export { t as styles };
 "
 `;
 
 exports[`litcss plugin > fixtures > test/fixtures/query-import.ts > isProduction is true 1`] = `
 "//vite-plugin-lit-css.js
-import { css as o } from \\"lit\\";
-const e = o\`:host{color:red}#xss{content:\\\\\\"\\\\\${console.log(window)}\\\\\\"}.hover\\\\\\\\:underline{text-decoration:underline}.text-\\\\\\\\[\\\\\\\\#50d71e\\\\\\\\]{color:#50d71e}\`, t = e;
-export {
-  t as styles
-};
+import { css as e } from "lit";
+//#endregion
+//#region test/fixtures/query-import.ts
+var t = e\`:host{color:red}#xss{content:\\"\\\${console.log(window)}\\"}.hover\\\\:underline{text-decoration:underline}.text-\\\\[\\\\#50d71e\\\\]{color:#50d71e}\`;
+//#endregion
+export { t as styles };
 "
 `;
 
 exports[`litcss plugin > fixtures > test/fixtures/url-import.ts > isProduction is false 1`] = `
 "//vite-plugin-lit-css.js
-const s = \\"/styles.css\\", t = s;
-export {
-  t as styleUrl
-};
+//#endregion
+//#region test/fixtures/url-import.ts
+var e = "/styles.css";
+//#endregion
+export { e as styleUrl };
 
 styles.css"
 `;
 
 exports[`litcss plugin > fixtures > test/fixtures/url-import.ts > isProduction is true 1`] = `
 "//vite-plugin-lit-css.js
-const s = \\"/styles.css\\", t = s;
-export {
-  t as styleUrl
-};
+//#endregion
+//#region test/fixtures/url-import.ts
+var e = "/styles.css";
+//#endregion
+export { e as styleUrl };
 
 styles.css"
 `;
