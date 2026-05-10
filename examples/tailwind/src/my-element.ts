@@ -28,6 +28,7 @@ export class MyElement extends TailwindElement {
   render() {
     return html`
       <div>
+      <p id="xss">content security<p>
         <a 
           href="https://vitejs.dev" 
           target="_blank"
