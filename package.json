@@ -4,6 +4,12 @@
   "version": "3.0.0",
   "type": "module",
   "repository": "https://github.com/redfox-mx/vite-lit-css",
+  "keywords": [
+    "vite-plugin",
+    "lit",
+    "lit-css",
+    "vite-plugin-lit-css"
+  ],
   "author": {
     "name": "Diego Jesus Hernández González",
     "email": "hernandezdj98@outlook.com",
