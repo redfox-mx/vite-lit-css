@@ -1,0 +1,27 @@
+{
+  "name": "vite-plugin-lit-css",
+  "image": "mcr.microsoft.com/devcontainers/typescript-node:1-22-bookworm",
+  "forwardPorts": [
+    5173
+  ],
+  "portsAttributes": {
+    "5173": {
+      "label": "Vite Dev Server",
+      "onAutoForward": "notify"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      // "settings": {
+      //   "editor.tabSize": 2,
+      //   "editor.insertSpaces": true,
+      //   "editor.formatOnSave": true
+      // },
+      "extensions": [
+        "editorconfig.editorconfig",
+        "esbenp.prettier-vscode"
+      ]
+    }
+  },
+  "remoteUser": "node"
+}
